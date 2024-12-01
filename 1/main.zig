@@ -7,23 +7,20 @@ pub fn main() !void {
     std.mem.sort(u32, &data[1], {}, std.sort.asc(u32));
 
     var diff: u64 = 0;
+    var similar: u64 = 0;
 
-    for (0.., data[0]) |i, elem| {
-        const distance = @as(i64, elem) - @as(i64, data[1][i]);
+    for (data[0], data[1]) |elem1, elem2| {
+        const distance = @as(i64, elem1) - @as(i64, elem2);
         diff += @abs(distance);
-    }
 
-    std.debug.print("Difference: {}\n", .{diff});
-
-    var similar: i64 = 0;
-    for (data[0]) |elem| {
-        for (data[1]) |elem2| {
-            if (elem == elem2) {
-                similar += elem2;
+        for (data[1]) |match| {
+            if (elem1 == match) {
+                similar += @as(u64, elem1);
             }
         }
     }
 
+    std.debug.print("Difference: {}\n", .{diff});
     std.debug.print("Similar: {}\n", .{similar});
 }
 
