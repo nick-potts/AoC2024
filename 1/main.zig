@@ -6,16 +6,11 @@ pub fn main() !void {
     std.mem.sort(u32, &data[0], {}, std.sort.asc(u32));
     std.mem.sort(u32, &data[1], {}, std.sort.asc(u32));
 
-    var diff: i64 = 0;
+    var diff: u64 = 0;
 
     for (0.., data[0]) |i, elem| {
         const distance = @as(i64, elem) - @as(i64, data[1][i]);
-
-        if (distance < 0) {
-            diff += -distance;
-        } else {
-            diff += distance;
-        }
+        diff += @abs(distance);
     }
 
     std.debug.print("Difference: {}\n", .{diff});
