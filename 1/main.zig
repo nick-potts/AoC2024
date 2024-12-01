@@ -33,9 +33,6 @@ pub fn main() !void {
 }
 
 fn getFileContents() !struct { [1000]u32, [1000]u32 } {
-    var gpa = std.heap.GeneralPurposeAllocator(.{}){};
-    defer _ = gpa.deinit();
-
     const file = try std.fs.cwd().openFile("input.txt", .{});
     defer file.close();
 
