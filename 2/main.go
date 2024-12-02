@@ -32,8 +32,8 @@ func main() {
 		}
 	}
 
-	fmt.Println("Safe count:", safeCount)
-	fmt.Println("Safe with removed count:", safeWithRemovedCount)
+	fmt.Println("Part 1:", safeCount)
+	fmt.Println("Part 2:", safeWithRemovedCount)
 
 	return
 }

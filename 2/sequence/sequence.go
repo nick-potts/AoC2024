@@ -1,43 +1,11 @@
 package sequence
 
 import (
-	"bufio"
 	"fmt"
-	"os"
 	"strconv"
 	"strings"
 )
 
-func main() {
-	file, err := os.Open("input.txt")
-	if err != nil {
-		return
-	}
-	defer file.Close()
-
-	scanner := bufio.NewScanner(file)
-
-	safeCount := 0
-	safeWithRemovedCount := 0
-	for scanner.Scan() {
-		safe, err := ProcessLine(scanner.Text())
-		if err != nil {
-			fmt.Println("Error processing line:", err)
-			return
-		}
-		if safe == 1 {
-			safeCount++
-		}
-		if safe >= 1 {
-			safeWithRemovedCount++
-		}
-	}
-
-	fmt.Println("Part 1:", safeCount)
-	fmt.Println("Part 2:", safeWithRemovedCount)
-
-	return
-}
 func ProcessLine(line string) (int, error) {
 	numbers := strings.Split(line, " ")
 	if len(numbers) < 2 {
